@@ -49,8 +49,8 @@ CREATE TABLE patient (
 CREATE TABLE results (
     id     INT         NOT NULL,
     patient_id INT NOT NULL,
-    type   VARCHAR(40)     NOT NULL,
-    DATA   VARCHAR(120) NOT NULL,
+    type   ENUM('Radiologie', 'Myometrie') NOT NULL,
+    date DATETIME NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
 );
@@ -59,21 +59,21 @@ CREATE TABLE radiology_results (
     id     INT         NOT NULL,
     patient_id INT NOT NULL,
     type     VARCHAR(40)     NOT NULL,
-    aspect   VARCHAR(120) NOT NULL,
-    comments VARCHAR(120) NOT NULL,
-    image    VARCHAR(120) NOT NULL,
+    aspect   VARCHAR(255) NOT NULL,
+    comments VARCHAR(255) NOT NULL,
+    image    VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
 );
 
 
 CREATE TABLE blood_chemistry_results (
-        id     INT         NOT NULL,
+        id INT NOT NULL AUTO_INCREMENT,
     patient_id INT NOT NULL,
-    parameter   VARCHAR(40)     NOT NULL,
-    value   VARCHAR(120) NOT NULL,
-    unit   VARCHAR(40)     NOT NULL,
-    reference_range   VARCHAR(120) NOT NULL,
+    parameter   VARCHAR(255)     NOT NULL,
+    value   VARCHAR(255) NOT NULL,
+    unit   VARCHAR(255)     NOT NULL,
+    reference_range   VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
 );
@@ -82,10 +82,10 @@ CREATE TABLE blood_chemistry_results (
 CREATE TABLE myometry_results (
        id     INT         NOT NULL,
     patient_id INT NOT NULL,
-    type     VARCHAR(40)     NOT NULL,
-    aspect   VARCHAR(120) NOT NULL,
-    score    VARCHAR(120) NOT NULL,
-    average_score    VARCHAR(120) NOT NULL,
+    type     VARCHAR(255)     NOT NULL,
+    aspect   VARCHAR(255) NOT NULL,
+    score    int NOT NULL,
+    average_score    int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
 )
