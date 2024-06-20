@@ -100,3 +100,14 @@ CREATE TABLE user (
 );
 
 Insert into user(id, password, employeeNumber, email) Values ( 1, '$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm', 'nep1','dokterUno@gmail.com') /* password is B-crypted, to login use "w8w"*/
+
+CREATE TABLE appointments (
+    id INT NOT NULL,
+    datetime DATETIME NOT NULL,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    duration VARCHAR(8), -- Formaat 'HH:MM:SS' 
+    PRIMARY KEY (id),
+    FOREIGN KEY (patient_id)  REFERENCES patient (id),
+    FOREIGN KEY (doctor_id)  REFERENCES user (id)
+);
