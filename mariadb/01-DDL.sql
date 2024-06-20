@@ -88,5 +88,13 @@ CREATE TABLE myometry_results (
     average_score    int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
+);
+
+CREATE TABLE user(
+    id INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    employeeNumber VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 )
-;
+INSERT INTO user (id, email, employeeNumber, password) VALUES (1, 'dummydoctor@gmail.com', "D001", "$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm")
