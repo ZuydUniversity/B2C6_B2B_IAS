@@ -32,7 +32,8 @@ DROP TABLE IF EXISTS patient,
                      results,
                      radiology_results,
                      blood_chemistry_results,
-                     myometry_results;
+                     myometry_results,
+                     user;
 
 /*!50503 set default_storage_engine = InnoDB */;
 /*!50503 select CONCAT('storage engine: ', @@default_storage_engine) as INFO */;
@@ -88,5 +89,14 @@ CREATE TABLE myometry_results (
     average_score    int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
-)
-;
+);
+
+CREATE TABLE user (
+    id INT NOT NULL,
+    password VARCHAR(255) Not NULL,
+    employeeNumber VARCHAR(255) Not NULL Unique,
+    email varchar(255) Not NULL Unique
+    PRIMARY KEY (id)
+);
+
+Insert into user(id, password, employeeNumber, email) Values ( 1, '$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm', 'nep1','dokterUno@gmail.com') /* password is B-crypted, to login use "w8w"*/
