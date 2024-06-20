@@ -97,4 +97,4 @@ CREATE TABLE user(
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 )
-INSERT INTO user (id, email, employeeNumber, password) VALUES (1, 'dummydoctor@gmail.com', "D001", "$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm")
+INSERT INTO user (id, email, employeeNumber, password) VALUES (1, 'dummydoctor@gmail.com', "D001", "$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm") /* password is B-crypted, use "w8w" to login*/ 
