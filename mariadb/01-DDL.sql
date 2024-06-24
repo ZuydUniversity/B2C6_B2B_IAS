@@ -32,7 +32,8 @@ DROP TABLE IF EXISTS patient,
                      results,
                      radiology_results,
                      blood_chemistry_results,
-                     myometry_results;
+                     myometry_results,
+                     user;
 
 /*!50503 set default_storage_engine = InnoDB */;
 /*!50503 select CONCAT('storage engine: ', @@default_storage_engine) as INFO */;
@@ -90,15 +91,26 @@ CREATE TABLE myometry_results (
     FOREIGN KEY (patient_id)  REFERENCES patient (id)    ON DELETE CASCADE
 );
 
-CREATE TABLE user(
+CREATE TABLE user (
     id INT NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    employeeNumber VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(255) Not NULL,
+    employeeNumber VARCHAR(255) Not NULL Unique,
+    email varchar(255) Not NULL Unique
     PRIMARY KEY (id)
 );
 
-INSERT INTO user (id, email, employeeNumber, password) VALUES (1, 'dummydoctor@gmail.com', "D001", "$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm") /* password is B-crypted, use "w8w" to login*/ 
+Insert into user(id, password, employeeNumber, email) Values ( 1, '$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm', 'nep1','dokterUno@gmail.com') /* password is B-crypted, to login use "w8w"*/
+
+CREATE TABLE appointments (
+    id INT NOT NULL,
+    datetime DATETIME NOT NULL,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    duration VARCHAR(8), -- Formaat 'HH:MM:SS' 
+    PRIMARY KEY (id),
+    FOREIGN KEY (patient_id)  REFERENCES patient (id),
+    FOREIGN KEY (doctor_id)  REFERENCES user (id)
+);
 
 CREATE TABLE notes (
     id INT AUTO_INCREMENT PRIMARY KEY,
