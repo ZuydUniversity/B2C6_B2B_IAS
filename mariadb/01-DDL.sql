@@ -96,5 +96,24 @@ CREATE TABLE user(
     employeeNumber VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
-)
+);
+
 INSERT INTO user (id, email, employeeNumber, password) VALUES (1, 'dummydoctor@gmail.com', "D001", "$2a$12$oYr5vPvrOGtin/H8T3pc1OmmqIMVp5OqIvQnCzC38N//ShBaX82Sm") /* password is B-crypted, use "w8w" to login*/ 
+
+CREATE TABLE notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (patient_id) REFERENCES patient(id)
+);
+
+CREATE TABLE images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT,
+    file_path VARCHAR(255),
+    description TEXT,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (patient_id) REFERENCES patient(id)
+);
